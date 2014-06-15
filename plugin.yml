@@ -1,0 +1,33 @@
+name: PaintMyLawn
+main: shoghicp\PaintMyLawn\Main
+version: 1.0.0
+api: 1.0.0
+author: shoghicp
+description: Allows placing colors or images in the grass
+website: http://github.com/shoghicp/PaintMyLawn
+
+commands:
+ paint:
+  description: "Sets the current column grass color"
+  usage: "/paint <RRGGBB> OR /paint <R> <G> <B>"
+  permission: paintmylawn.command.paint
+ paintimage:
+  description: "Sets grass column colors to a PPM image, centered on the current block"
+  usage: "/paintimage <PPM image URL>"
+  permission: paintmylawn.command.paintimage
+
+permissions:
+  paintmylawn:
+   default: op
+   description: "Allows using all PaintMyLawn features"
+   children:
+    paintmylawn.command:
+     default: op
+     description: "Allows using all the commands"
+     children:
+      paintmylawn.command.paint:
+       default: op
+       description: "Allows setting individual column grass color"
+      paintmylawn.command.paintimage:
+       default: op
+       description: "Allows setting the grass color columns to an image"
