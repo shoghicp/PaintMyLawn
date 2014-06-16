@@ -12,8 +12,8 @@ commands:
   usage: "/paint <RRGGBB> OR /paint <R> <G> <B>"
   permission: paintmylawn.command.paint
  paintimage:
-  description: "Sets grass column colors to a PPM image, centered on the current block"
-  usage: "/paintimage <PPM image URL>"
+  description: "Sets grass column colors to a PPM binary image, centered on the current block"
+  usage: "/paintimage [player] <PPM image URL>"
   permission: paintmylawn.command.paintimage
 
 permissions:
