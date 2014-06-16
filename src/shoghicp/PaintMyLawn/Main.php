@@ -133,18 +133,16 @@ class Main extends PluginBase{
 		$centerX = (int) ($player->x - 0.5);
 		$centerZ = (int) ($player->z - 0.5);
 		$startX = $centerX - floor($width / 2);
-		$endX = $centerX + ceil($width / 2);
 		$startZ = $centerZ - floor($height / 2);
-		$endZ = $centerZ + ceil($height / 2);
 
 		$offset = 0;
 		$level = $player->getLevel();
-		for($x = $startX; $x <= $endX; ++$x){
-			for($z = $startZ; $z <= $endZ and isset($ppm{$offset}); ++$z){
+		for($z = 0; $z < $height; ++$z){
+			for($x = 0; $x < $width and isset($ppm{$offset}); ++$x){
 				$r = ord($ppm{$offset++});
 				$g = ord($ppm{$offset++});
 				$b = ord($ppm{$offset++});
-				$level->setBiomeColor($x, $z, $r, $g, $b);
+				$level->setBiomeColor($x + $startX, $z + $startZ, $r, $g, $b);
 			}
 		}
 

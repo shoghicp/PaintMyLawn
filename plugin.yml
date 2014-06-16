@@ -1,6 +1,6 @@
 name: PaintMyLawn
 main: shoghicp\PaintMyLawn\Main
-version: 1.0.0
+version: 1.1.0
 api: 1.0.0
 author: shoghicp
 description: Allows placing colors or images in the grass
