@@ -154,7 +154,7 @@ class Main extends PluginBase{
 		$index = Level::chunkHash($x, $z);
 		Cache::remove("world:".($level->getName()).":" . $index);
 		foreach($level->getUsingChunk($x, $z) as $player){
-			$player->setChunkIndex($index, 0xff);
+			$player->unloadChunk($x, $z);
 		}
 	}
 
