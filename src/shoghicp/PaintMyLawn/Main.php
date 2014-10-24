@@ -21,6 +21,7 @@ namespace shoghicp\PaintMyLawn;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\level\Level;
+use pocketmine\math\Math;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Cache;
@@ -51,8 +52,8 @@ class Main extends PluginBase{
 				}
 
 
-				$x = (int) ($sender->x - 0.5);
-				$z = (int) ($sender->z - 0.5);
+				$x = Math::floorFloat($sender->x);
+				$z = Math::floorFloat($sender->y);
 				$this->paintColor($sender->getLevel(), $x, $z, $colors[0], $colors[1], $colors[2]);
 				$sender->sendMessage("Grass color on $x, $z set to RGB #{$args[0]}");
 				return true;
@@ -153,8 +154,8 @@ class Main extends PluginBase{
 		$level->setBiomeColor($x, $z, $r, $g, $b);
 		$index = Level::chunkHash($x, $z);
 		Cache::remove("world:".($level->getName()).":" . $index);
-		foreach($level->getUsingChunk($x, $z) as $player){
-			$player->unloadChunk($x, $z);
+		foreach($level->getUsingChunk($x >> 4, $z >> 4) as $player){
+			$player->unloadChunk($x >> 4, $z >> 4);
 		}
 	}
 
